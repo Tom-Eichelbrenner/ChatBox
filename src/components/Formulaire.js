@@ -37,7 +37,7 @@ class Formulaire extends Component {
     };
 
     createMessage = () => {
-        const { addMessage, pseudo } = this.props
+        const { addMessage, pseudo, length } = this.props
 
         const message = {
             pseudo,
@@ -46,7 +46,7 @@ class Formulaire extends Component {
 
         addMessage(message)
 
-        this.setState({message:''})
+        this.setState({message:'', length})
     }
 }
 
