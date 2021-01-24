@@ -11,6 +11,7 @@ class Formulaire extends Component {
                 onSubmit={this.handleSubmit}
                 className="form">
                 <textarea
+                    onKeyUp={this.handleKeyUp}
                     value={this.state.message}
                     onChange={this.handleChange}
                     required={true}
@@ -24,6 +25,12 @@ class Formulaire extends Component {
             </form>
         );
     }
+
+    handleKeyUp = event => {
+        if (event.key === "Enter"){
+            this.createMessage();
+        }
+    };
 
     handleChange = (event) => {
         const message = event.target.value
