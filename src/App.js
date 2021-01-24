@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import './App.css'
-import Formulaire from "./components/Formulaire";
 import Message from "./components/Message"
+import Formulaire from "./components/Formulaire";
 
 class App extends Component {
     state = {
@@ -10,14 +10,21 @@ class App extends Component {
     }
 
     render() {
+        const messages = Object
+            .keys(this.state.messages)
+            .map(key => (
+                <Message
+                    key={key}
+                    pseudo={this.state.messages[key].pseudo}
+                    message={this.state.messages[key].message}/>
+            ))
         return (
             <div className='box'>
-                <div>
+                < div>
                     <div className="messages">
-                        <Message/>
-                        <Message/>
-                        <Message/>
-                        <Message/>
+                        <div className="message">
+                            {messages}
+                        </div>
                     </div>
                 </div>
                 <Formulaire
