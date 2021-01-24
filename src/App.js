@@ -3,10 +3,20 @@ import './App.css'
 import Message from "./components/Message"
 import Formulaire from "./components/Formulaire";
 
+// firebase
+import base from "./base";
+
 class App extends Component {
     state = {
         messages: {},
         pseudo: this.props.match.params.pseudo
+    }
+
+    componentDidMount() {
+        base.syncState('/', {
+            context: this,
+            state: 'messages'
+        })
     }
 
     render() {
