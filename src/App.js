@@ -32,6 +32,7 @@ class App extends Component {
             .map(key => (
                 <Message
                     key={key}
+                    isUser={this.isUser}
                     pseudo={this.state.messages[key].pseudo}
                     message={this.state.messages[key].message}/>
             ))
@@ -52,6 +53,8 @@ class App extends Component {
             </div>
         )
     }
+
+    isUser = (pseudo) => pseudo === this.state.pseudo;
 
     addMessage = message => {
         const messages = {...this.state.messages}
