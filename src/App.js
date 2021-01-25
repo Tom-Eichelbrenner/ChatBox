@@ -6,6 +6,10 @@ import Formulaire from "./components/Formulaire";
 // firebase
 import base from "./base";
 
+// animations
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import './animation.css'
+
 class App extends Component {
     state = {
         messages: {},
@@ -30,19 +34,24 @@ class App extends Component {
         const messages = Object
             .keys(this.state.messages)
             .map(key => (
-                <Message
-                    key={key}
-                    isUser={this.isUser}
-                    pseudo={this.state.messages[key].pseudo}
-                    message={this.state.messages[key].message}/>
+                <CSSTransition
+                    timeout={200}
+                    classNames={'fade'}
+
+                    key={key}>
+                    <Message
+                        isUser={this.isUser}
+                        pseudo={this.state.messages[key].pseudo}
+                        message={this.state.messages[key].message}/>
+                </CSSTransition>
             ))
         return (
             <div className='box'>
-                < div>
+                <div>
                     <div className="messages" ref={this.messagesRef}>
-                        <div className="message">
+                        <TransitionGroup className="message">
                             {messages}
-                        </div>
+                        </TransitionGroup>
                     </div>
                 </div>
                 <Formulaire
